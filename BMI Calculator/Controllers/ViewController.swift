@@ -36,15 +36,11 @@ class ViewController: UIViewController {
         let heght = heightSlider.value
         let weight = weightSlider.value
         
-        let bmi = weight / (heght * heght)
+        let bmi = weight / pow(heght, 2)
         
         print(bmi)
         
-        let bmiMessage: String
-        
-        if bmi < 18.5 {
-            
-        }
+
     }
     
 }
