@@ -14,14 +14,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightSlider: UISlider!
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var heightLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
     @IBAction func onHeightSlide(_ sender: UISlider) {
-        
         print(sender.value)
         heightLabel.text = String(format: "%.2f", sender.value) + "m"
     }
@@ -32,16 +31,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func calculateBMI(_ sender: Any) {
-        
-        let heght = heightSlider.value
+        let height = heightSlider.value
         let weight = weightSlider.value
         
-        let bmi = weight / pow(heght, 2)
+        let bmi = weight / pow(height, 2)
         
-        print(bmi)
+        // Create an instance of SecondViewController using storyboard
+        let secondVC = SecondViewController()
+            secondVC.bmiIndex = String(format: "%.2f", bmi) // Pass the calculated BMI
+            self.present(secondVC, animated: true, completion: nil) // Present SecondViewController
+     
         
-
+        print("BMI: \(bmi)") // Optional: print BMI value for debugging
     }
-    
 }
-
