@@ -6,4 +6,12 @@
 //  Copyright © 2024 Angela Yu. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class SecondViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+}
