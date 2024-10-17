@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculateViewController: UIViewController {
 
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var weightSlider: UISlider!
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var heightLabel: UILabel!
+    let calculatorBrain = CalculatorBrain()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +22,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onHeightSlide(_ sender: UISlider) {
-        print(sender.value)
+      
         heightLabel.text = String(format: "%.2f", sender.value) + "m"
     }
     
     @IBAction func onWeightSlider(_ sender: UISlider) {
-        print(sender.value)
+ 
         weightLabel.text = String(format: "%.2f", sender.value) + "kg"
     }
     
@@ -34,14 +35,21 @@ class ViewController: UIViewController {
         let height = heightSlider.value
         let weight = weightSlider.value
         
-        let bmi = weight / pow(height, 2)
+    
+        calculatorBrain.height = Double(height)
+        calculatorBrain.weight = Double(weight)
         
-        // Create an instance of SecondViewController using storyboard
-        let secondVC = SecondViewController()
-            secondVC.bmiIndex = String(format: "%.2f", bmi) // Pass the calculated BMI
-            self.present(secondVC, animated: true, completion: nil) // Present SecondViewController
-     
         
-        print("BMI: \(bmi)") // Optional: print BMI value for debugging
+        self.performSegue(withIdentifier: "goToResult", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ResultViewController
+        
+        destinationVC.bmiValue = calculatorBrain.calculateBMI()
+        
+        
+        
+   
     }
 }
