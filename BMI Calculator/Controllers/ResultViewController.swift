@@ -17,10 +17,12 @@ class ResultViewController: UIViewController {
     let calculatorBrain = CalculatorBrain()
     
     var bmiValue = "0.0"
+    var advice: String?
     override func viewDidLoad() {
         super.viewDidLoad()
        
         resultLabel.text = bmiValue
+        adviceLabel.text = advice
         // Do any additional setup after loading the view.
     }
     
